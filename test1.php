@@ -10,7 +10,7 @@ use \Jhg\ExpertSystem\Knowledge\Rule;
 $knowledgeBase = new KnowledgeBase();
 $knowledgeBase->add(Rule::factory('x > 1', '$y = 10;'));
 $knowledgeBase->add(Rule::factory('y > 1', '$z = 100;'));
-$knowledgeBase->add(Rule::factory('z > 1', '$a = "mama";'));
+$knowledgeBase->add(Rule::factory('z > 1', '$a = "olol";'));
 $knowledgeBase->add(Fact::factory('x', 10));
 
 //$loader = new KnowledgeJsonLoader('test1.json');
