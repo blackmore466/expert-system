@@ -66,7 +66,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="text-center">Версия: 0.1.0</p>
 
        <!-- <p class="pull-right"><?= Yii::powered() ?></p>-->
     </div>
