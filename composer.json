@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Jhg\\ExpertSystem\\": ""
+            "Jhg\\ExpertSystem\\": "InferenceEngine"
         }
     },
     "require-dev": {
