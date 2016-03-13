@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\InsuranceType */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Insurance Types', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Типы страхования', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="insurance-type-view">

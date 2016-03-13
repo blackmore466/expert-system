@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "insurancetype".
+ * This is the model class for table "insurance-type".
  *
  * @property string $id
  * @property string $name
@@ -18,7 +18,7 @@ class InsuranceType extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'insurancetype';
+        return 'insurance-type';
     }
 
     /**
@@ -40,8 +40,8 @@ class InsuranceType extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
+            'name' => 'Название',
+            'description' => 'Описание',
         ];
     }
 }

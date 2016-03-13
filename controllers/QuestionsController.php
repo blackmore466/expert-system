@@ -3,17 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\InsuranceType;
-use app\models\InsuranceTypeSearch;
+use app\models\Questions;
+use app\models\QuestionsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\data\Pagination;
 use yii\filters\VerbFilter;
 
 /**
- * InsuranceTypeController implements the CRUD actions for InsuranceType model.
+ * QuestionsController implements the CRUD actions for Questions model.
  */
-class InsuranceTypeController extends Controller
+class QuestionsController extends Controller
 {
     public function behaviors()
     {
@@ -28,28 +27,22 @@ class InsuranceTypeController extends Controller
     }
 
     /**
-     * Lists all InsuranceType models.
+     * Lists all Questions models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($insurancetypeid)
     {
-        $searchModel = new InsuranceTypeSearch();
+        $searchModel = new QuestionsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        $pagination = new Pagination([
-            'defaultPageSize' => 5,
-            'totalCount' => $dataProvider->query->count(),
-        ]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'pagination' => $pagination,
         ]);
     }
 
     /**
-     * Displays a single InsuranceType model.
+     * Displays a single Questions model.
      * @param string $id
      * @return mixed
      */
@@ -61,16 +54,16 @@ class InsuranceTypeController extends Controller
     }
 
     /**
-     * Creates a new InsuranceType model.
+     * Creates a new Questions model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new InsuranceType();
+        $model = new Questions();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->Id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -79,7 +72,7 @@ class InsuranceTypeController extends Controller
     }
 
     /**
-     * Updates an existing InsuranceType model.
+     * Updates an existing Questions model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -89,7 +82,7 @@ class InsuranceTypeController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->Id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -98,7 +91,7 @@ class InsuranceTypeController extends Controller
     }
 
     /**
-     * Deletes an existing InsuranceType model.
+     * Deletes an existing Questions model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -111,15 +104,15 @@ class InsuranceTypeController extends Controller
     }
 
     /**
-     * Finds the InsuranceType model based on its primary key value.
+     * Finds the Questions model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return InsuranceType the loaded model
+     * @return Questions the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = InsuranceType::findOne($id)) !== null) {
+        if (($model = Questions::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
