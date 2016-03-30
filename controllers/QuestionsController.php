@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Questions;
 use app\models\QuestionsSearch;
+use app\models\QuestionsForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -30,15 +31,18 @@ class QuestionsController extends Controller
      * Lists all Questions models.
      * @return mixed
      */
-    public function actionIndex($insurancetypeid)
+    public function actionIndex($insurancetypeid=null)
     {
         $searchModel = new QuestionsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $model = new QuestionsForm();
+        $model->initQuestions($dataProvider->getModels());
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'model' => $model,
             'dataProvider' => $dataProvider,
         ]);
+
+
     }
 
     /**
@@ -118,4 +122,5 @@ class QuestionsController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }
