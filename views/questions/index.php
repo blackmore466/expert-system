@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\QuestionsSearch */
@@ -13,7 +14,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="questions-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?//php var_dump($model->questions);// echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('Create Questions', ['create'], ['class' => 'btn btn-success']) ?>
@@ -35,7 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>-
-
-
+    ]);?>
+    <!--<?/*$form = ActiveForm::begin(); ?>
+        <?=$form->field($form, 'question')->label();?>
+    <?php ActiveForm::end()*/ ?>-->
 </div>

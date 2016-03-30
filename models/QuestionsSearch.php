@@ -41,7 +41,12 @@ class QuestionsSearch extends Questions
      */
     public function search($params)
     {
-        $query = Questions::find()->where(['insurancetypeid'=>$params['insurancetypeid']]);
+        if (isset($params['insurancetypeid'])) {
+            $query = Questions::find()->where(['insurancetypeid' => $params['insurancetypeid']]);
+        }
+        else {
+            $query = Questions::find();
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
