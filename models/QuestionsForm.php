@@ -18,9 +18,11 @@ class QuestionsForm extends Model {
     }
 
     public function initQuestions($dataProvider) {
+        $i = 0;
         foreach($dataProvider as $dataset) {
-            $this->questions[]['questionText'] = $dataset['Text'];
-            $this->questions[]['answersText'] = static::separateAnswers($dataset['Answers']);
+            $this->questions[$i]['questionText'] = $dataset['Text'];
+            $this->questions[$i]['answersText'] = static::separateAnswers($dataset['Answers']);
+            $i++;
         }
     }
 

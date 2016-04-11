@@ -10,15 +10,16 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Вопросы';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="questions-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?//php var_dump($model->questions);// echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?var_dump($this->params);?>
 
     <p>
-        <?= Html::a('Create Questions', ['create'], ['class' => 'btn btn-success']) ?>
+        <?//= Html::a('Create Questions', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -38,7 +39,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);?>
-    <!--<?/*$form = ActiveForm::begin(); ?>
-        <?=$form->field($form, 'question')->label();?>
-    <?php ActiveForm::end()*/ ?>-->
+    <?$form = ActiveForm::begin(); ?>
+        <?foreach ($model->questions as $question):?>
+            <?= $form->field($model, 'questions')->radioList($question['answersText']
+                            )->label($question['questionText']);?>
+        <?endforeach?>
+        <div class="form-group">
+            <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
+        </div>
+    <?ActiveForm::end()?>
 </div>
