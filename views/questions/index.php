@@ -10,19 +10,21 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Вопросы';
 $this->params['breadcrumbs'][] = $this->title;
-
+$this->registerCssFile('web/assets/4b7e2d59/css/questions.css');
+$this->registerCssFile('/web/assets/4b7e2d59/css/questions.css');
 ?>
+<style rel="stylesheet" href="web/assets/4b7e2d59/css/questions.css" ></style>
 <div class="questions-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?= Html::encode("Ответьте на следующие вопросы:") ?></h2>
 
-    <?var_dump($this->params);?>
+    <?//var_dump($this->params);?>
 
     <p>
         <?//= Html::a('Create Questions', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?= GridView::widget([
+    <?/*= GridView::widget([
         'summary' => '',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -38,14 +40,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]);?>
+    ]);*/?>
     <?$form = ActiveForm::begin(); ?>
-        <?foreach ($model->questions as $question):?>
-            <?= $form->field($model, 'questions')->radioList($question['answersText']
-                            )->label($question['questionText']);?>
-        <?endforeach?>
+        <span class="input-group-addon">
+            <?foreach ($model->questions as $question):?>
+                <?= $form->field($model, 'questions')->radioList($question['answersText'],
+                                ['name' => $question['LeftPart']])->label($question['questionText']);?>
+            <?endforeach?>
+        </span>
+        <br/>
         <div class="form-group">
             <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
         </div>
+
+
     <?ActiveForm::end()?>
 </div>
