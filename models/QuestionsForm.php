@@ -22,6 +22,7 @@ class QuestionsForm extends Model {
         foreach($dataProvider as $dataset) {
             $this->questions[$i]['questionText'] = $dataset['Text'];
             $this->questions[$i]['answersText'] = static::separateAnswers($dataset['Answers']);
+            $this->questions[$i]['LeftPart'] = $dataset['LeftPartFact'];
             $i++;
         }
     }
