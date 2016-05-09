@@ -41,7 +41,12 @@ class RulesSearch extends Rules
      */
     public function search($params)
     {
-        $query = Rules::find();
+        if (isset($params['insurancetypeid'])) {
+            $query = Rules::find()->where(['insurancetypeid' => $params['insurancetypeid']]);
+        }
+        else {
+            $query = Rules::find();
+        }
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
