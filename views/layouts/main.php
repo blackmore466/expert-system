@@ -26,6 +26,7 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
+    Yii::$app->language = 'ru_RU';
     NavBar::begin([
         'brandLabel' => 'ЭС',
         'brandUrl' => Yii::$app->homeUrl,

@@ -38,6 +38,7 @@ class QuestionsController extends Controller
         $model = new QuestionsForm();
         $model->initQuestions($dataProvider->getModels());
         return $this->render('index', [
+            'insurancetypeid' => Yii::$app->request->queryParams['insurancetypeid'],
             'model' => $model,
             'dataProvider' => $dataProvider,
         ]);

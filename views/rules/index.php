@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\RulesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Rules';
+$this->title = 'Правила';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="rules-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Rules', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать правило', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -34,7 +34,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-    <? $f = \yii\bootstrap\ActiveForm::begin(); ?>
-        <div>ops</div>
-    <? \yii\bootstrap\ActiveForm::end(); ?>
+
 </div>

@@ -7,6 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\QuestionsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $insurancetypeid */
 
 $this->title = 'Вопросы';
 $this->params['breadcrumbs'][] = $this->title;
@@ -41,7 +42,9 @@ $this->registerCssFile('/web/assets/4b7e2d59/css/questions.css');
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);*/?>
-    <?$form = ActiveForm::begin(); ?>
+    <?$form = ActiveForm::begin([
+        'action' => ['rules/index', 'insurancetypeid' => $insurancetypeid]
+    ]); ?>
         <span class="input-group-addon">
             <?foreach ($model->questions as $question):?>
                 <?= $form->field($model, 'questions')->radioList($question['answersText'],
