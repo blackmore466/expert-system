@@ -52,7 +52,7 @@ class Rules extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getInfEngResult($facts, $insurancetypeid, $rules) {
+    public function getInfEngResult($facts, $rules) {
 
         $knowledgeBase = new KnowledgeBase();
 
@@ -67,7 +67,7 @@ class Rules extends \yii\db\ActiveRecord
 
         $engine = new InferenceEngine();
         $engine->run($knowledgeBase);
-        print_r($knowledgeBase->getFacts());
+        return $knowledgeBase->getFacts()['optimalprogram']->getValue();
 
 
     }

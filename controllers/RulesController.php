@@ -8,6 +8,7 @@ use app\models\RulesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 
 /**
  * RulesController implements the CRUD actions for Rules model.
@@ -35,7 +36,10 @@ class RulesController extends Controller
         $searchModel = new RulesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $rules = new Rules();
-        $rules->getInfEngResult($_POST, Yii::$app->request->queryParams['insurancetypeid'], $dataProvider->getModels());
+        $optimalProgram = $rules->getInfEngResult($_POST, $dataProvider->getModels());
+        $url = Url::toRoute(['insurance-program/index', 'insurancetypeid' => Yii::$app->request->queryParams,
+            'NameinRule' => $optimalProgram]);
+        $this->redirect($url);
     }
 
     /**

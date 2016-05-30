@@ -34,10 +34,13 @@ class InsuranceProgramController extends Controller
     {
         $searchModel = new InsuranceProgramSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        //var_dump(Yii::$app->request->queryParams);
+        $model =InsuranceProgram::findOne(['NameinRule' => Yii::$app->request->queryParams['NameinRule'],
+            'insurancetypeid' => Yii::$app->request->queryParams['insurancetypeid']]);
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'model' =>$model
+            //'searchModel' => $searchModel,
+            //'dataProvider' => $dataProvider,
         ]);
     }
 

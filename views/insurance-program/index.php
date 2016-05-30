@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\InsuranceProgramSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Insurance Programs';
+$this->title = 'Оптимальная программа';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="insurance-program-index">
@@ -16,10 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Insurance Program', ['create'], ['class' => 'btn btn-success']) ?>
+        <?//= Html::a('Create Insurance Program', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+    <p>
+        Ваша оптимальная программа: <?=$model->Name?>
     </p>
 
-    <?= GridView::widget([
+    <?/*= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -32,6 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]);*/ ?>
 
 </div>
