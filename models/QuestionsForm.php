@@ -21,13 +21,24 @@ class QuestionsForm extends Model {
         $i = 0;
         foreach($dataProvider as $dataset) {
             $this->questions[$i]['questionText'] = $dataset['Text'];
-            $this->questions[$i]['answersText'] = static::separateAnswers($dataset['Answers']);
+            $this->questions[$i]['answersText'] = static::getAnswersArray($dataset['Answers'], $dataset['RightPartFact']);
             $this->questions[$i]['LeftPart'] = $dataset['LeftPartFact'];
             $i++;
         }
     }
 
-    static private function separateAnswers($data) {
+    static  private function getAnswersArray($text, $code) {
+        $AnswersArray = [];
+        $text_array = self::separate($text);
+        $code_array = self::separate($code);
+        for ($i=0; $i<count($code_array); $i++) {
+            $AnswersArray[$code_array[$i]] = $text_array[$i];
+        }
+        return $AnswersArray;
+
+    }
+
+    static private function separate($data) {
         return explode('@', $data);
     }
 

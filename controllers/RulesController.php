@@ -34,11 +34,8 @@ class RulesController extends Controller
     {
         $searchModel = new RulesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        $rules = new Rules();
+        $rules->getInfEngResult($_POST, Yii::$app->request->queryParams['insurancetypeid'], $dataProvider->getModels());
     }
 
     /**

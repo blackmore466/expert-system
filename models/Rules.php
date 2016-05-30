@@ -3,6 +3,11 @@
 namespace app\models;
 
 use Yii;
+use \Jhg\ExpertSystem\Inference\InferenceEngine;
+use \Jhg\ExpertSystem\Knowledge\Fact;
+use \Jhg\ExpertSystem\Knowledge\KnowledgeBase;
+use \Jhg\ExpertSystem\Knowledge\KnowledgeJsonLoader;
+use \Jhg\ExpertSystem\Knowledge\Rule;
 
 /**
  * This is the model class for table "Rules".
@@ -45,5 +50,25 @@ class Rules extends \yii\db\ActiveRecord
             'Requirement' => 'Requirement',
             'InsuranceTypeId' => 'Insurance Type ID',
         ];
+    }
+
+    public function getInfEngResult($facts, $insurancetypeid, $rules) {
+
+        $knowledgeBase = new KnowledgeBase();
+
+        foreach ($facts as $key => $value) {
+            if ($key != '_csrf') {
+                $knowledgeBase->add(Fact::factory($key,$value));
+            }
+        }
+        foreach ($rules as $rule) {
+            $knowledgeBase->add(Rule::factory($rule->Condition, $rule->Requirement));
+        }
+
+        $engine = new InferenceEngine();
+        $engine->run($knowledgeBase);
+        print_r($knowledgeBase->getFacts());
+
+
     }
 }
