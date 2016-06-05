@@ -21,6 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         Ваша оптимальная программа: <?=$model->Name?>
     </p>
+    <p>
+
+        <?= Html::a('Оставить заявку на оформление', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
     <?/*= GridView::widget([
         'dataProvider' => $dataProvider,

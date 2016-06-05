@@ -56,6 +56,10 @@ class Rules extends \yii\db\ActiveRecord
 
         $knowledgeBase = new KnowledgeBase();
 
+        if (count($rules) == 0 || count($facts) == 0) {
+            return 'Программа не найдена';
+        }
+
         foreach ($facts as $key => $value) {
             if ($key != '_csrf') {
                 $knowledgeBase->add(Fact::factory($key,$value));
@@ -67,7 +71,12 @@ class Rules extends \yii\db\ActiveRecord
 
         $engine = new InferenceEngine();
         $engine->run($knowledgeBase);
-        return $knowledgeBase->getFacts()['optimalprogram']->getValue();
+        $opt = $knowledgeBase->getFacts()['optimalprogram'];
+
+        if ($opt == '') {
+            return  'Программа не найдена' ;
+        }
+        return $opt->getValue();
 
 
     }

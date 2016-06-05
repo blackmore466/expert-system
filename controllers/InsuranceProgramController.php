@@ -4,10 +4,12 @@ namespace app\controllers;
 
 use Yii;
 use app\models\InsuranceProgram;
+use app\models\LoginForm;
 use app\models\InsuranceProgramSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 
 /**
  * InsuranceProgramController implements the CRUD actions for InsuranceProgram model.
@@ -63,15 +65,21 @@ class InsuranceProgramController extends Controller
      */
     public function actionCreate()
     {
-        $model = new InsuranceProgram();
+        if (!\Yii::$app->user->isGuest) {
+            $model = new InsuranceProgram();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->Id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+        else {
+            return $this->redirect(Url::to(['site/login']));
+        }
+
     }
 
     /**
