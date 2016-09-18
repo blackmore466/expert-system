@@ -37,9 +37,9 @@ class RulesController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $rules = new Rules();
         $optimalProgram = $rules->getInfEngResult($_POST, $dataProvider->getModels());
-        $url = Url::toRoute(['insurance-program/index', 'insurancetypeid' => Yii::$app->request->queryParams,
+        /*$url = Url::toRoute(['insurance-program/index', 'insurancetypeid' => Yii::$app->request->queryParams,
             'NameinRule' => $optimalProgram]);
-        $this->redirect($url);
+        $this->redirect($url);*/
     }
 
     /**

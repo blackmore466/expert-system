@@ -33,9 +33,9 @@ class Rules extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Condition', 'Requirement', 'InsuranceTypeId'], 'required'],
+            [['Condition', 'Requirement', 'InsuranceTypeId', 'Explainion'], 'required'],
             [['InsuranceTypeId'], 'integer'],
-            [['Condition', 'Requirement'], 'string', 'max' => 255]
+            [['Condition', 'Requirement', 'Explainion'], 'string', 'max' => 255]
         ];
     }
 
@@ -49,6 +49,7 @@ class Rules extends \yii\db\ActiveRecord
             'Condition' => 'Condition',
             'Requirement' => 'Requirement',
             'InsuranceTypeId' => 'Insurance Type ID',
+            'Explainion' => 'Объяснение'
         ];
     }
 
@@ -59,6 +60,7 @@ class Rules extends \yii\db\ActiveRecord
         if (count($rules) == 0 || count($facts) == 0) {
             return 'Программа не найдена';
         }
+        var_dump($rules);
 
         foreach ($facts as $key => $value) {
             if ($key != '_csrf') {
